@@ -1,10 +1,10 @@
 module top
 (
-	input nrst,
+    input nrst,
     input clk,
-	inout [7:0] io,
-	input [7:0] in,
-	output [7:0] out,
+    inout [7:0] io,
+    input [7:0] in,
+    output [7:0] out,
     output [5:0] led
 );
 
@@ -70,9 +70,11 @@ assign led = ledFlop;
 
 always @(posedge clk) begin
     clockCounter <= clockCounter + 1;
-	//if(write && address[15:8] == 0) begin
-		ledFlop <= ~address[5:0];//dataOut[5:0];
-	//end
+    //if(write && address[15:8] == 0) begin
+    	ledFlop[4:0] <= ~dataIn[4:0];
+    	ledFlop[5:5] <= ~clk2;
+    	//ledFlop <= ~address[5:0];//dataIn[5:0];
+    //end
 end
 
 endmodule
